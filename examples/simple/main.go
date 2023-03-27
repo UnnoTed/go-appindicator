@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/dawidd6/go-appindicator"
-	"github.com/gotk3/gotk3/gtk"
 	"log"
 	"time"
+
+	"github.com/UnnoTed/go-appindicator"
+	"github.com/gotk3/gotk3/gtk"
 )
 
 func main() {
@@ -26,12 +27,9 @@ func main() {
 	indicator.SetStatus(appindicator.StatusActive)
 	indicator.SetMenu(menu)
 
-	_, err = item.Connect("activate", func() {
+	item.Connect("activate", func() {
 		indicator.SetLabel("activated", "")
 	})
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	menu.Add(item)
 	menu.ShowAll()

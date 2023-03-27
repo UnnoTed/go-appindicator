@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/dawidd6/go-appindicator"
-	"github.com/gotk3/gotk3/gtk"
 	"log"
 	"reflect"
 	"time"
+
+	"github.com/UnnoTed/go-appindicator"
+	"github.com/gotk3/gotk3/gtk"
 )
 
 const (
@@ -91,28 +92,19 @@ func main() {
 	indicator.GetSecondaryActivateTarget().SetLabel(label + "-changed")
 
 	// Connect callback to item.
-	_, err = item.Connect("activate", func() {
+	item.Connect("activate", func() {
 		indicator.SetLabel(label+"-changed", "")
 	})
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	// Connect callback to indicator. New label.
-	_, err = indicator.Object().Connect(appindicator.SignalNewLabel, func() {
+	indicator.Object().Connect(appindicator.SignalNewLabel, func() {
 		fmt.Println("NewLabel: ", indicator.GetLabel())
 	})
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	// Connect callback to indicator. Scroll event.
-	_, err = indicator.Object().Connect(appindicator.SignalScrollEvent, func() {
+	indicator.Object().Connect(appindicator.SignalScrollEvent, func() {
 		fmt.Println("scroll")
 	})
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	go func() {
 		for {

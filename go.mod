@@ -1,5 +1,5 @@
-module github.com/dawidd6/go-appindicator
+module github.com/UnnoTed/go-appindicator
 
 go 1.14
 
-require github.com/gotk3/gotk3 v0.5.0
+require github.com/gotk3/gotk3 v0.6.1
